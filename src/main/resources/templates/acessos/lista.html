@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Acessos</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    />
+  </head>
+
+  <body>
+    <th:block th:replace="fragments/navbar :: navigation"></th:block>
+
+    <h2>Registros de Acesso</h2>
+
+    <a href="/acessos/entrada" class="btn btn-primary mb-3"
+      >Registrar Entrada</a
+    >
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Veículo</th>
+          <th>Vaga</th>
+          <th>Entrada</th>
+          <th>Saída</th>
+          <th>Status</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr th:each="a : ${acessos}">
+          <td th:text="${a.id}"></td>
+          <td th:text="${a.veiculo.placa}"></td>
+          <td th:text="${a.vaga.numero}"></td>
+          <td th:text="${a.dataEntrada}"></td>
+          <td th:text="${a.dataSaida}"></td>
+          <td th:text="${a.status}"></td>
+
+          <td>
+            <a
+              th:if="${a.status == 'ABERTO'}"
+              th:href="@{|/acessos/saida/${a.id}|}"
+              class="btn btn-success btn-sm"
+              >Registrar Saída</a
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
