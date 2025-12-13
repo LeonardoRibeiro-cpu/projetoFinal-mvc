@@ -11,6 +11,7 @@
 
   <body>
     <th:block th:replace="fragments/navbar :: navigation"></th:block>
+
     <h2>Registrar Entrada de Veículo</h2>
 
     <form
@@ -18,22 +19,27 @@
       th:object="${acesso}"
       method="post"
     >
+
+      <!-- VEÍCULO -->
       <label>Veículo:</label>
-      <select th:field="*{veiculo}" class="form-select" required>
+      <select th:field="*{veiculo.id}" class="form-select" required>
+        <option value="">Selecione um veículo</option>
         <option
           th:each="v : ${veiculos}"
-          th:value="${v}"
-          th:text="${v.placa}"
-        ></option>
+          th:value="${v.id}"
+          th:text="${v.placa}">
+        </option>
       </select>
 
+      <!-- VAGA -->
       <label class="mt-3">Vaga:</label>
-      <select th:field="*{vaga}" class="form-select" required>
+      <select th:field="*{vaga.id}" class="form-select" required>
+        <option value="">Selecione uma vaga</option>
         <option
           th:each="v : ${vagas}"
-          th:value="${v}"
-          th:text="${v.numero}"
-        ></option>
+          th:value="${v.id}"
+          th:text="${v.numero}">
+        </option>
       </select>
 
       <button class="btn btn-success mt-4">Confirmar Entrada</button>
