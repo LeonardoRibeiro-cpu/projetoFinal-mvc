@@ -3,49 +3,79 @@
   <head>
     <meta charset="UTF-8" />
     <title>Usuários</title>
+
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
     />
   </head>
+
   <body>
     <th:block th:replace="fragments/navbar :: navigation"></th:block>
-    <h2>Lista de Usuários</h2>
 
-    <a href="/usuarios/novo" class="btn btn-primary mb-3">Novo Usuário</a>
+    <div class="container mt-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="fw-bold mb-0">Lista de Usuários</h2>
 
-    <table class="table table-bordered table-striped">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nome</th>
-          <th>Email</th>
-          <th>CPF</th>
-          <th>Perfil</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr th:each="u : ${usuarios}">
-          <td th:text="${u.id}"></td>
-          <td th:text="${u.nome}"></td>
-          <td th:text="${u.email}"></td>
-          <td th:text="${u.cpf}"></td>
-          <td th:text="${u.perfil}"></td>
-          <td>
-            <a
-              th:href="@{|/usuarios/editar/${u.id}|}"
-              class="btn btn-warning btn-sm"
-              >Editar</a
-            >
-            <a
-              th:href="@{|/usuarios/excluir/${u.id}|}"
-              class="btn btn-danger btn-sm"
-              >Excluir</a
-            >
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        <a href="/usuarios/novo" class="btn btn-primary"> Novo Usuário </a>
+      </div>
+
+      <div class="table-responsive">
+        <table
+          class="table table-striped table-hover table-bordered align-middle text-center"
+        >
+          <thead class="table-dark">
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Email</th>
+              <th>CPF</th>
+              <th>Perfil</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr th:each="u : ${usuarios}">
+              <td th:text="${u.id}"></td>
+              <td th:text="${u.nome}"></td>
+              <td th:text="${u.email}"></td>
+              <td th:text="${u.cpf}"></td>
+
+              <td>
+                <span
+                  th:text="${u.perfil}"
+                  class="badge"
+                  th:classappend="
+                    ${u.perfil == 'ADMIN'} ? 'bg-danger' :
+                    (${u.perfil == 'FUNCIONARIO'} ? 'bg-warning text-dark' :
+                    'bg-secondary')
+                  "
+                >
+                </span>
+              </td>
+
+              <td>
+                <div class="btn-group btn-group-sm">
+                  <a
+                    th:href="@{|/usuarios/editar/${u.id}|}"
+                    class="btn btn-warning"
+                  >
+                    Editar
+                  </a>
+
+                  <a
+                    th:href="@{|/usuarios/excluir/${u.id}|}"
+                    class="btn btn-danger"
+                  >
+                    Excluir
+                  </a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </body>
 </html>
