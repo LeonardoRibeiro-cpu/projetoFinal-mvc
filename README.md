@@ -106,7 +106,7 @@ Os relatórios são gerados a partir de consultas ao banco de dados e exibidos n
 
 ```bash
 # Clonar o repositório
-git clone https://github.com/seu-usuario/seu-repositorio.git
+git clone https://github.com/LeonardoRibeiro-cpu/projetoFinal-mvc/tree/main
 
 # Acessar a pasta do projeto
 cd seu-repositorio
