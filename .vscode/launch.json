@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-LeonardoApplication<leonardo>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.avaliacao.leonardo.LeonardoApplication",
+      "projectName": "leonardo",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
