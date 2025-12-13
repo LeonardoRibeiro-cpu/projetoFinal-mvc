@@ -10,9 +10,8 @@
   </head>
   <body>
     <th:block th:replace="fragments/navbar :: navigation"></th:block>
-    <h2
-      th:text="${veiculo.id == null} ? 'Novo Veículo' : 'Editar Veículo'"
-    ></h2>
+
+    <h2 th:text="${veiculo.id == null} ? 'Novo Veículo' : 'Editar Veículo'"></h2>
 
     <form th:action="@{/veiculos/salvar}" th:object="${veiculo}" method="post">
       <input type="hidden" th:field="*{id}" />
@@ -27,12 +26,13 @@
       <input th:field="*{marca}" class="form-control" required />
 
       <label class="mt-3">Dono (Usuário):</label>
-      <select th:field="*{usuario}" class="form-select">
+      <select th:field="*{usuario.id}" class="form-select" required>
+        <option value="">Selecione um usuário</option>
         <option
           th:each="u : ${usuarios}"
-          th:value="${u}"
-          th:text="${u.nome}"
-        ></option>
+          th:value="${u.id}"
+          th:text="${u.nome}">
+        </option>
       </select>
 
       <button class="btn btn-success mt-4">Salvar</button>
