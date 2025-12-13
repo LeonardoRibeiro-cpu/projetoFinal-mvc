@@ -33,6 +33,11 @@ public class VeiculoController {
 
     @PostMapping("/salvar")
     public String salvar(@ModelAttribute Veiculo veiculo) {
+
+        if (veiculo.getUsuario() == null) {
+            throw new RuntimeException("Usuário não selecionado");
+        }
+
         veiculoRepository.save(veiculo);
         return "redirect:/veiculos";
     }
